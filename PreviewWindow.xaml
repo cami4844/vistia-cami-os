@@ -1,0 +1,69 @@
+<Window x:Class="Vistia.PreviewWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        Title="Vistia" Icon="/Assets/logo_vistia.png"
+        WindowStyle="None" AllowsTransparency="False" Background="#F7F1E7"
+        ResizeMode="CanResize" ShowInTaskbar="True" ShowActivated="True"
+        MinWidth="420" MinHeight="320" Width="960" Height="640" Topmost="False">
+    <shell:WindowChrome.WindowChrome>
+        <shell:WindowChrome ResizeBorderThickness="6" CaptionHeight="12"
+                            GlassFrameThickness="0" UseAeroCaptionButtons="False"/>
+    </shell:WindowChrome.WindowChrome>
+    <Grid>
+        <Border x:Name="Marco" BorderThickness="1" BorderBrush="#C05A32">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Grid x:Name="Zona" Grid.Row="0" ClipToBounds="True">
+                    <Image x:Name="Img" Stretch="Uniform" Margin="14" Visibility="Collapsed"
+                           RenderOptions.BitmapScalingMode="HighQuality"/>
+                    <wv2:WebView2 x:Name="Web" Visibility="Collapsed"
+                                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+                    <TextBlock x:Name="Cargando" Text="Cargando..." HorizontalAlignment="Center"
+                               VerticalAlignment="Center" Visibility="Hidden"/>
+                </Grid>
+
+                <Border x:Name="Barra" Grid.Row="1" Padding="12,7,10,8"
+                        MouseLeftButtonDown="Barra_Arrastrar" Cursor="SizeAll">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <DockPanel Grid.Row="0" Margin="0,0,0,6">
+                            <TextBlock x:Name="TPos" DockPanel.Dock="Right" FontSize="11" VerticalAlignment="Center" Margin="12,0,0,0"/>
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Center">
+                                <TextBlock x:Name="TNombre" FontFamily="Georgia" FontSize="14" FontWeight="Bold"
+                                           TextTrimming="CharacterEllipsis"/>
+                                <TextBlock x:Name="TMeta" FontSize="11" Margin="0,2,0,0"
+                                           TextTrimming="CharacterEllipsis"/>
+                            </StackPanel>
+                        </DockPanel>
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button x:Name="BFijar" Content="Fijar" Padding="10,4" Margin="0,0,6,0"
+                                    ToolTip="Ctrl+F · Mantiene esta vista encima y bloquea el cierre hasta desfijar"
+                                    Click="Fijar_Click" Cursor="Hand"/>
+                            <Button x:Name="BInfo" Content="Info" Padding="10,4" Margin="0,0,6,0"
+                                    ToolTip="Ctrl+I · Ruta, tamaño, fechas y metadatos" Click="Info_Click" Cursor="Hand"/>
+                            <Button x:Name="BMinecraft" Content="Minecraft" Padding="10,4" Margin="0,0,6,0"
+                                    Visibility="Collapsed" ToolTip="Ver como posible skin 2D/3D animada" Click="Minecraft_Click" Cursor="Hand"/>
+                            <Button x:Name="BCodigo" Content="Código" Padding="10,4" Margin="0,0,6,0"
+                                    Visibility="Collapsed" ToolTip="Ver el código fuente" Click="Codigo_Click" Cursor="Hand"/>
+                            <Button x:Name="BDividir" Content="Dividir" Padding="10,4" Margin="0,0,6,0"
+                                    Visibility="Collapsed" ToolTip="Ver la página y su código a la vez" Click="Dividir_Click" Cursor="Hand"/>
+                            <Button x:Name="BAbrir" Content="Abrir" Padding="10,4" Margin="0,0,6,0"
+                                    Click="Abrir_Click" Cursor="Hand"/>
+                            <Button x:Name="BCerrar" Content="X" Padding="9,4"
+                                    Click="Cerrar_Click" Cursor="Hand"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

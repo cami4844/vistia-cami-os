@@ -1,0 +1,9 @@
+bin/
+obj/
+.vs/
+publish*/
+*.user
+*.suo
+*.userprefs
+CONTEXTO_VIVO.md
+PLAN_VISTIA.md

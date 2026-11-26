@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="referrer" content="no-referrer">
+<title>Vistia</title>
+<link rel="stylesheet" href="/css/tintero.css?v=303">
+<link rel="stylesheet" href="/css/media.css?v=303">
+<link rel="stylesheet" href="/css/minecraft.css?v=303">
+<script src="/js/jszip.min.js"></script>
+<script src="/js/lodash.min.js"></script>
+<script src="/js/highlight.min.js"></script>
+<script src="/js/marked.umd.js"></script>
+<script src="/js/docx-preview.min.js"></script>
+<script src="/js/xlsx.full.min.js"></script>
+<script src="/js/ag-psd.min.js"></script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "/js/three/build/three.module.js",
+    "three/addons/": "/js/three/examples/jsm/",
+    "pptx-preview": "/js/pptx-preview.es.min.js",
+    "tslib": "/js/tslib.mjs",
+    "jszip": "/js/stub_jszip.js",
+    "lodash": "/js/stub_lodash.js",
+    "uuid": "/js/stub_uuid.js",
+    "echarts": "/js/stub_echarts.js"
+  }
+}
+</script>
+</head>
+<body>
+<div id="volver" style="display:none"></div>
+<div id="pantalla"></div>
+<script>
+window.addEventListener('error', function (e) {
+    try { window.chrome && window.chrome.webview && window.chrome.webview.postMessage({ cmd: 'jserror', msg: String((e && e.message) || e) }); } catch (err) { }
+});
+window.addEventListener('unhandledrejection', function (e) {
+    try { window.chrome && window.chrome.webview && window.chrome.webview.postMessage({ cmd: 'jserror', msg: String((e && e.reason) || e) }); } catch (err) { }
+});
+document.getElementById('volver').onclick = function () {
+    try { window.chrome && window.chrome.webview && window.chrome.webview.postMessage({ cmd: 'zip-volver' }); } catch (err) { }
+};
+function informarFocoInteractivo() {
+    const a = document.activeElement;
+    let interactivo = false;
+    let texto = false;
+    if (a) {
+        const tag = a.tagName.toLowerCase();
+        const rol = (a.getAttribute('role') || '').toLowerCase();
+        interactivo = ['input', 'textarea', 'select', 'button', 'a', 'iframe'].includes(tag) ||
+            a.isContentEditable || ['textbox', 'searchbox', 'combobox', 'button', 'link', 'slider'].includes(rol);
+        texto = ['input', 'textarea', 'select', 'iframe'].includes(tag) || a.isContentEditable ||
+            ['textbox', 'searchbox', 'combobox'].includes(rol);
+    }
+    try { window.chrome?.webview?.postMessage({ cmd: 'foco-interactivo', valor: interactivo, texto }); } catch (e) { }
+}
+document.addEventListener('focusin', informarFocoInteractivo);
+document.addEventListener('focusout', () => setTimeout(informarFocoInteractivo, 0));
+document.addEventListener('pointerdown', informarFocoInteractivo);
+document.addEventListener('keydown', informarFocoInteractivo);
+informarFocoInteractivo();
+</script>
+<script type="module" src="/app/vista.js"></script>
+</body>
+</html>

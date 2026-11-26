@@ -1,0 +1,68 @@
+<Window x:Class="Vistia.VistaInicio"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Vistia" Width="590" Height="450" MinWidth="470" MinHeight="390"
+        Icon="/Assets/logo_vistia.png"
+        ResizeMode="CanResize" WindowStartupLocation="CenterScreen"
+        WindowStyle="SingleBorderWindow" Background="#F7F1E7">
+    <Grid Margin="28,20,28,16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Image Source="/Assets/logo_vistia.png" Width="56" Height="56" Stretch="Uniform"/>
+            <StackPanel Margin="14,2,0,0" VerticalAlignment="Center">
+                <TextBlock Text="Vistia" FontFamily="Georgia" FontSize="26" FontWeight="Bold"
+                           Foreground="#C05A32" HorizontalAlignment="Left"/>
+                <TextBlock Text="Vista previa instantánea con la barra espaciadora"
+                           Foreground="#6B6257" FontSize="12" Margin="0,4,0,0"/>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,16,0,0">
+            <Ellipse x:Name="Punto" Width="12" Height="12" Fill="#3E7C4F" VerticalAlignment="Center"/>
+            <TextBlock x:Name="TEstado" Text="Servicio ACTIVO" FontSize="15" FontWeight="SemiBold"
+                       Foreground="#3E3A34" Margin="8,0,0,0" VerticalAlignment="Center"/>
+                <TextBlock x:Name="TVersion" Text="v1.0.1" FontSize="12" Foreground="#8A8175"
+                       Margin="14,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" Margin="0,12,0,0">
+            <TextBlock TextWrapping="Wrap" Text="Selecciona un archivo en el Explorador y pulsa ESPACIO para verlo.
+Flechas navegan entre archivos · Enter abre · Esc cierra.
+Imágenes, MOV y más videos, PDF, Office, HTML renderizado + código, Info, ZIP, fuentes y 3D.
+Reproductor propio: progreso, volumen, velocidad, bucle, miniaturas y pantalla completa.
+Minecraft: MCPACK, MCADDON, MCWORLD, mods JAR y skins 2D/3D animadas.
+Ctrl+F fija la vista · Ctrl+I muestra información · Ctrl+Espacio o Espacio+V abre fuera de edición."
+                   Foreground="#4A443C" FontSize="12" LineHeight="19" Margin="0,0,0,4"/>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="0,4,0,10">
+            <Button x:Name="BProbar" Content="Probar con un archivo…" Width="190" Height="34"
+                    FontSize="13" Background="#C05A32" Foreground="White" BorderThickness="0"
+                    Cursor="Hand" Click="ProbarClick"/>
+            <Button x:Name="BPausar" Content="Pausar" Width="110" Height="34" Margin="10,0,0,0"
+                    FontSize="13" Background="#E8DFD2" Foreground="#3E3A34" BorderThickness="0"
+                    Cursor="Hand" Click="PausarClick"/>
+            <Button x:Name="BReiniciar" Content="Reiniciar" Width="90" Height="34" Margin="10,0,0,0"
+                    FontSize="13" Background="#E8DFD2" Foreground="#3E3A34" BorderThickness="0"
+                    Cursor="Hand" Click="ReiniciarClick"/>
+            <Button x:Name="BSalir" Content="Salir" Width="90" Height="34" Margin="10,0,0,0"
+                    FontSize="13" Background="#E8DFD2" Foreground="#3E3A34" BorderThickness="0"
+                    Cursor="Hand" Click="SalirClick"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5">
+            <CheckBox x:Name="CAutoinicio" Content="Iniciar con Windows" FontSize="12"
+                      Foreground="#3E3A34" Checked="AutoinicioChange" Unchecked="AutoinicioChange"/>
+            <TextBlock Text="Powered by Cami-OS · cami4844" FontSize="11" Foreground="#8A8175"
+                       Margin="0,10,0,0"/>
+        </StackPanel>
+    </Grid>
+</Window>

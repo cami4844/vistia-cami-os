@@ -1,0 +1,51 @@
+<Window x:Class="Vistia.VentanaInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Información · Vistia" Width="590" Height="610" Icon="/Assets/logo_vistia.png"
+        WindowStyle="None" AllowsTransparency="False" ResizeMode="NoResize"
+        ShowInTaskbar="False" ShowActivated="False" Background="#F7F1E7">
+    <Border x:Name="Marco" BorderThickness="1" BorderBrush="#C05A32">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border x:Name="Cabecera" Grid.Row="0" Padding="18,13" MouseLeftButtonDown="Arrastrar">
+                <Grid>
+                    <TextBlock x:Name="Titulo" Text="Información del archivo" FontFamily="Georgia"
+                               FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
+                    <Button x:Name="BCerrarInfo" Content="X" HorizontalAlignment="Right" Padding="9,4"
+                            Click="Cerrar_Click" Cursor="Hand"/>
+                </Grid>
+            </Border>
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="18,12">
+                <ItemsControl x:Name="Campos">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="0,0,0,11">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="160"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding Clave}" Foreground="#7A6A5A" FontSize="12"
+                                           TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,1,12,0"/>
+                                <TextBox Text="{Binding Valor}" Grid.Column="1" IsReadOnly="True"
+                                         BorderThickness="0" Background="Transparent" TextWrapping="Wrap"
+                                         FontFamily="Consolas" FontSize="12" Padding="0"
+                                         Cursor="IBeam" FocusVisualStyle="{x:Null}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
+            <Border x:Name="Pie" Grid.Row="2" Padding="14,10">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="BCopiarRuta" Content="Copiar ruta" Padding="10,5" Margin="0,0,7,0" Click="CopiarRuta_Click"/>
+                    <Button x:Name="BCopiarTodo" Content="Copiar información" Padding="10,5" Margin="0,0,7,0" Click="CopiarTodo_Click"/>
+                    <Button x:Name="BAbrirCarpeta" Content="Ver en carpeta" Padding="10,5" Click="AbrirCarpeta_Click"/>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </Border>
+</Window>
